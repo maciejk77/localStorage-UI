@@ -4,6 +4,7 @@ export default class SearchBar extends Component {
   constructor(props) {
     super(props);
 
+    // set the initial value for queries on the localStorage as empty array
     if(!localStorage.queries) {
       localStorage.setItem('queries', JSON.stringify([]));
     }
@@ -20,22 +21,24 @@ export default class SearchBar extends Component {
   onFormSubmit(event) { 
     event.preventDefault;
 
-    //limits stored values to five, removes 1st when sixth and consecutive value is pushed
-    // if( (JSON.parse(localStorage.queries)).length > 4) {
-    //   localStorage.queries = JSON.parse(localStorage.queries).splice(1);
-    // }
+    let queries = JSON.parse(localStorage.queries);
+    let term = this.state.term.trim();
 
     // trim all spaces - doesn't accept empty string/spaces, multiple entries
-    if((this.state.term.trim()) === "" 
-      || JSON.parse(localStorage.queries)
-      .filter(query => query === this.state.term).length > 0) {
+    if(term === "" || queries
+      .filter(query => query === term).length > 0) {
         return;
     } else {
       // adds additional element to array
-      let q = JSON.parse(localStorage.queries);
-      q.push(this.state.term);
-      localStorage.queries = JSON.stringify(q);
-    }      
+      queries.push(term);
+      localStorage.queries = JSON.stringify(queries);
+    }
+
+    // limits stored values to five, removes 1st when sixth and consecutive value is pushed
+    if(queries.length > 5) {
+      localStorage.queries = JSON.stringify(queries.splice(1));
+    }
+
   }
 
   render() {

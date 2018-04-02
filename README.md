@@ -1,23 +1,13 @@
-# ReduxSimpleStarter
+# localStorage UI component
 
-Interested in learning [Redux](https://www.udemy.com/react-redux/)?
+- set up a search box component to pass keywords to localStorage
+  - limit number of stored searches i.e. 5, (remove the first in array, the oldest search)
+  - store keywords without spaces and do not store values which are already in localStore
 
-### Getting Started
+- create a pop up to list results, sorted (from newest on the top), scrollable
+- add delete button next to each item, clickable link to redirect to certain URL
 
-There are two methods for getting started with this repo.
-
-#### Familiar with Git?
-Checkout this repo, install dependencies, then start the gulp process with the following:
-
-```
-> git clone https://github.com/StephenGrider/ReduxSimpleStarter.git
-> cd ReduxSimpleStarter
-> npm install
-> npm start
-```
-
-#### Not Familiar with Git?
-Click [here](https://github.com/StephenGrider/ReactStarter/releases) then download the .zip file.  Extract the contents of the zip file, then open your terminal, change to the project directory, and:
+- persist data in database, adding, removing, fetching keyword/keywords list
 
 ```
 > npm install
