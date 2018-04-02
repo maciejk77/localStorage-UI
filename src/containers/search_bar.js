@@ -21,22 +21,22 @@ export default class SearchBar extends Component {
   onFormSubmit(event) { 
     event.preventDefault;
 
-    let queries = JSON.parse(localStorage.queries);
+    let queries_list = JSON.parse(localStorage.queries);
     let term = this.state.term.trim();
 
     // trim all spaces - doesn't accept empty string/spaces, multiple entries
-    if(term === "" || queries
+    if(term === "" || queries_list
       .filter(query => query === term).length > 0) {
         return;
     } else {
       // adds additional element to array
-      queries.push(term);
-      localStorage.queries = JSON.stringify(queries);
+      queries_list.push(term);
+      localStorage.queries = JSON.stringify(queries_list);
     }
 
     // limits stored values to five, removes 1st when sixth and consecutive value is pushed
-    if(queries.length > 5) {
-      localStorage.queries = JSON.stringify(queries.splice(1));
+    if(queries_list.length > 5) {
+      localStorage.queries = JSON.stringify(queries_list.splice(1));
     }
 
   }
